@@ -1,0 +1,253 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment | CloudCart</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <nav class="navbar flex container">
+    <a href="#" class="logo">Cloud<span>Cart</span></a>
+    <ul class="navlist flex">
+      <li><a href="index.html" class="link">Home</a></li>
+      <li><a href="/shop1.html" class="link">Shop</a></li>
+      <li><a href="#" class="link">Dashboard</a></li>
+      <li><a href="http://localhost:3000/login.html" class="link">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <h2>Checkout</h2>
+  <div class="payment-container flex wrap">
+
+    Left: Billing Info 
+    <div class="billing-section">
+      <h3>Billing Details</h3>
+      <form id="payment-form">
+        <label>Full Name</label>
+        <input type="text" placeholder="John Doe" required />
+
+        <label>Email</label>
+        <input type="email" placeholder="john@example.com" required />
+
+        <label>Address</label>
+        <input type="text" placeholder="123 Main St, City, State" required />
+
+        <label>Payment Method</label>
+        <select required>
+          <option value="">-- Select --</option>
+          <option value="card">Credit / Debit Card</option>
+          <option value="cod">Cash on Delivery</option>
+          <option value="cod">UPI Payment</option>
+        </select>
+
+        <label>Card Number</label>
+        <input type="text" placeholder="xxxx xxxx xxxx xxxx" />
+
+        <label>Expiry Date</label>
+        <input type="month" />
+
+        <label>CVV</label>
+        <input type="text" placeholder="123" />
+
+        <button type="submit" class="pay-btn">Pay Now</button>
+      </form>
+    </div>
+
+     Right: Order Summary 
+    <div class="summary-section">
+      <h3>Order Summary</h3>
+      <div class="summary-item">
+        <p>Leather Black Handbag</p>
+        <span>₹100.00</span>
+      </div>
+      <div class="summary-item">
+        <p>Shipping</p>
+        <span>₹20.00</span>
+      </div>
+      <hr />
+      <div class="summary-item total">
+        <strong>Total</strong>
+        <strong>₹120.00</strong>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+  .payment-container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .billing-section, .summary-section {
+    flex: 1;
+    background: #f7f7f7;
+    padding: 1.5rem;
+    border-radius: 10px;
+  }
+  input, select {
+    width: 100%;
+    padding: 0.6rem;
+    margin: 0.5rem 0 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .pay-btn {
+    background-color: #222;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+  }
+  .total {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+</style>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment | CloudCart</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <nav class="navbar flex container">
+    <a href="#" class="logo">Cloud<span>Cart</span></a>
+    <ul class="navlist flex">
+      <li><a href="index.html" class="link">Home</a></li>
+      <li><a href="shop1.html" class="link">Shop</a></li>
+      <li><a href="cart.html" class="link">Cart</a></li>
+       <!-- <li><a href="#" class="link">Dashboard</a></li> -->
+      <li><a href="http://localhost:3000/login.html" class="link">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <h2>Checkout</h2>
+  <div class="payment-container flex wrap">
+
+    <!-- Left: Billing Info -->
+    <div class="billing-section">
+      <h3>Billing Details</h3>
+      <form id="payment-form">
+        <label>Full Name</label>
+        <input type="text" placeholder="John Doe" required />
+
+        <label>Email</label>
+        <input type="email" placeholder="john@example.com" required />
+
+        <label>Address</label>
+        <input type="text" placeholder="123 Main St, City, State" required />
+
+        <label>Payment Method</label>
+        <select required>
+          <option value="">-- Select --</option>
+          <option value="card">Credit / Debit Card</option>
+          <option value="cod">Cash on Delivery</option>
+          <option value="upi">UPI Payment</option>
+        </select>
+
+        <label>Card Number</label>
+        <input type="text" placeholder="xxxx xxxx xxxx xxxx" />
+
+        <label>Expiry Date</label>
+        <input type="month" />
+
+        <label>CVV</label>
+        <input type="text" placeholder="123" />
+
+        <button type="submit" class="pay-btn">Pay Now</button>
+      </form>
+    </div>
+
+    <!-- Right: Order Summary -->
+    <div class="summary-section">
+      <h3>Order Summary</h3>
+      <div class="summary-item">
+        <p>Products Total</p>
+        <span id="product-total">₹0</span>
+      </div>
+      <div class="summary-item">
+        <p>Shipping</p>
+        <span>₹20</span>
+      </div>
+      <hr />
+      <div class="summary-item total">
+        <strong>Total</strong>
+        <strong id="final-total">₹0</strong>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  // Retrieve and display total price
+  const productTotal = parseInt(localStorage.getItem("totalPrice")) || 0;
+  const shipping = 20;
+  const finalAmount = productTotal + shipping;
+
+  document.getElementById("product-total").textContent = `₹${productTotal}`;
+  document.getElementById("final-total").textContent = `₹${finalAmount}`;
+</script>
+
+<style>
+  .payment-container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .billing-section, .summary-section {
+    flex: 1;
+    background: #f7f7f7;
+    padding: 1.5rem;
+    border-radius: 10px;
+  }
+  input, select {
+    width: 100%;
+    padding: 0.6rem;
+    margin: 0.5rem 0 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .pay-btn {
+    background-color: #222;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+  }
+  .total {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+</style>
+
+</body>
+</html>

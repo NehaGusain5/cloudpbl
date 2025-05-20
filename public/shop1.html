@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment | CloudCart</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+    <header>
+  <nav class="navbar flex container">
+    <a href="#" class="logo">Cloud<span>Cart</span></a>
+    <ul class="navlist flex">
+      <li><a href="index.html" class="link">Home</a></li>
+      <!-- <li><a href="#" class="link">Shop</a></li> -->
+       <li>
+                <a href="#" class="link link-active">shop</a>
+            </li>
+      <li><a href="cart.html" class="link">Cart</a></li>
+      <li><a href="http://localhost:3000/login.html" class="link">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+<!-- <h1>Explore Products</h1> -->
+<head>
+    <meta charset="UTF-8">
+    <title>Shop | CloudCart</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        } */
+
+        h1 {
+    display: block;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 40px 0;
+}
+
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .product-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: scale(1.03);
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .shop-now {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: linear-gradient(135deg, #ff0000, #000000); /* Red to Black Gradient */
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    border: none;
+}
+
+.shop-now:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #000000, #ff0000); /* Reverse Gradient */
+}
+
+
+        /* .shop-now {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient */
+    /* color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    border: none;
+} */ 
+
+/* .shop-now:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #feb47b, #ff7e5f); /* Reverse gradient */
+/* }  */
+
+        /* .shop-now {
+            display: inline-block;
+            margin-top: 10px;
+            background: #008CBA;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .shop-now:hover {
+            background: #005f7a;
+        } */
+    </style>
+</head>
+<body>
+
+   
+   <h1>Explore Products</h1> 
+    
+    <div class="product-grid">
+        <div class="product-card">
+            <img src="images/card-image10.jpg" alt="Bag" class="product-image">
+            <h3>Bag</h3>
+            <p>Stylish leather bag for everyday use.</p>
+            <a href="product.html?product_name=Bag&product_id=001" class="shop-now">Shop Now</a>
+        </div>
+
+        <div class="product-card">
+            <img src="images/top2-1.jpg" alt="Top" class="product-image">
+            <h3>Top</h3>
+            <p>Casual and trendy top.</p>
+            <a href="product.html?product_name=Top&product_id=002" class="shop-now">Shop Now</a>
+        </div>
+
+        <div class="product-card">
+            <img src="images/ethinic1-2.jpg" alt="Ethnic Wear" class="product-image">
+            <h3>Ethnic Wear</h3>
+            <p>Elegant traditional dress.</p>
+            <a href="product.html?product_name=Ethnic Wear&product_id=003" class="shop-now">Shop Now</a>
+        </div>
+
+        <div class="product-card">
+            <img src="images/shoes3-1.webp" alt="Shoes" class="product-image">
+            <h3>Shoes</h3>
+            <p>Comfortable running shoes.</p>
+            <a href="product.html?product_name=Shoes&product_id=004" class="shop-now">Shop Now</a>
+        </div>
+
+        <div class="product-card">
+            <img src="images/watch1-2.jpg" alt="Watch" class="product-image">
+            <h3>Watch</h3>
+            <p>Classic wristwatch.</p>
+            <a href="product.html?product_name=Watch&product_id=005" class="shop-now">Shop Now</a>
+        </div>
+
+        <div class="product-card">
+            <img src="images/hoddie2-1.jpg" alt="Hoddie" class="product-image">
+            <h3>Hoddie</h3>
+            <p>Comfortable hoddie.</p>
+            <a href="product.html?product_name=Hoddie&product_id=004" class="shop-now">Shop Now</a>
+        </div>
+
+        <div class="product-card">
+            <img src="images/top1-1.jpg" alt="Top" class="product-image">
+            <h3>Top</h3>
+            <p>Cotton Top.</p>
+            <a href="product.html?product_name=Top&product_id=005" class="shop-now">Shop Now</a>
+        </div>
+
+        <div class="product-card">
+            <img src="images/tshirt3-1.jpg" alt="T-shirt" class="product-image">
+            <h3>T-shirt</h3>
+            <p>Cotton t-shirt in black.</p>
+            <a href="product.html?product_name=T-shirt&product_id=006" class="shop-now">Shop Now</a>
+        </div>
+
+        <div class="product-card">
+            <img src="images/tshirt4-2.jpg" alt="T-shirt" class="product-image">
+            <h3>T-shirt</h3>
+            <p>Cotton t-shirt in pink.</p>
+            <a href="product.html?product_name=T-shirt&product_id=007" class="shop-now">Shop Now</a>
+        </div>
+    </div>
+
+</body>
+</html>

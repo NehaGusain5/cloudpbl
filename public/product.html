@@ -1,0 +1,358 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | CloudCart</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .product-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .product-image {
+            width: 250px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product-info {
+            flex-grow: 1;
+        }
+
+        .product-info h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .product-info p {
+            color: #333;
+            font-size: 16px;
+        }
+
+        .product-info .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff5733;
+            margin: 10px 0;
+        }
+
+        .add-to-cart {
+            background: #ff0000;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            display: block;
+            transition: background 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background: #cc0000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="product-container">
+        <img id="product-image" src="" alt="Product Image" class="product-image">
+        <div class="product-info">
+            <h1 id="product-title">Product Name</h1>
+            <p id="product-description">Product description goes here.</p>
+            <p class="price" id="product-price">$0.00</p>
+            <button class="add-to-cart" id="addToCartBtn">Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        // Extract product details from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productName = urlParams.get('product_name');
+
+        // Product database (for two products)
+        const products = {
+            "Bag": { image: "images/card-image10.jpg", description: "Stylish leather bag for everyday use.", price: "$49.99" },
+            "Shoes": { image: "images/shoes3-1.webp", description: "Comfortable running shoes.", price: "$79.99" }
+        };
+
+        // Populate product page dynamically
+        if (products[productName]) {
+            document.getElementById("product-title").textContent = productName;
+            document.getElementById("product-image").src = products[productName].image;
+            document.getElementById("product-description").textContent = products[productName].description;
+            document.getElementById("product-price").textContent = products[productName].price;
+        } else {
+            document.body.innerHTML = "<h1>Product not found</h1>";
+        }
+        const addToCartBtn = document.getElementById("addToCartBtn");
+
+if (addToCartBtn) {
+    addToCartBtn.addEventListener("click", () => {
+        alert("Added to Cart!");
+    });
+}
+</script>
+    
+
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Details</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="product-container">
+    <img id="product-image" src="" alt="Product Image" />
+    <div class="details">
+      <h1 id="product-name"></h1>
+      <p id="product-description"></p>
+      <p><strong>Price:</strong> ₹<span id="product-price"></span></p>
+      <p><strong>In Stock:</strong> <span id="product-stock">Yes</span></p>
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" value="1" min="1" />
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("product_name");
+    const id = params.get("product_id");
+
+    const products = {
+      "001": {
+        name: "Bag",
+        description: "Stylish leather bag for everyday use.",
+        image: "images/card-image10.jpg",
+        price: 799
+      },
+      "002": {
+        name: "Top",
+        description: "Casual and trendy top.",
+        image: "images/top2-1.jpg",
+        price: 499
+      },
+      "003": {
+        name: "Ethnic Wear",
+        description: "Elegant traditional dress.",
+        image: "images/ethinic1-2.jpg",
+        price: 1199
+      },
+      "004": {
+        name: "Shoes",
+        description: "Comfortable running shoes.",
+        image: "images/shoes3-1.webp",
+        price: 1299
+      },
+      "005": {
+        name: "Watch",
+        description: "Classic wristwatch.",
+        image: "images/watch1-2.jpg",
+        price: 699
+      },
+      "006": {
+        name: "T-shirt",
+        description: "Cotton t-shirt in black.",
+        image: "images/tshirt3-1.jpg",
+        price: 399
+      },
+      "007": {
+        name: "T-shirt",
+        description: "Cotton t-shirt in pink.",
+        image: "images/tshirt4-2.jpg",
+        price: 349
+      }
+    };
+
+    const product = products[id];
+    if (product) {
+      document.getElementById("product-name").textContent = product.name;
+      document.getElementById("product-description").textContent = product.description;
+      document.getElementById("product-price").textContent = product.price;
+      document.getElementById("product-image").src = product.image;
+    }
+
+    function addToCart() {
+      const quantity = parseInt(document.getElementById("quantity").value);
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({
+        id,
+        name: product.name,
+        price: product.price,
+        quantity,
+        image: product.image
+      });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Product added to cart!");
+    }
+  </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Details</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .product-container {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .product-container img {
+      width: 200px;
+      height: auto;
+      border-radius: 10px;
+    }
+    .details {
+      flex: 1;
+    }
+    .details h1 {
+      margin-top: 0;
+    }
+    .buttons {
+      margin-top: 20px;
+    }
+    .buttons button, .buttons a {
+      margin-right: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      background-color: #e3340d;
+      color: white;
+      cursor: pointer;
+    }
+    .buttons a {
+      background-color: #030e1a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="product-container">
+    <img id="product-image" src="" alt="Product Image" />
+    <div class="details">
+      <h1 id="product-name"></h1>
+      <p id="product-description"></p>
+      <p><strong>Price:</strong> ₹<span id="product-price"></span></p>
+      <p><strong>In Stock:</strong> Yes</p>
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" value="1" min="1" />
+      <div class="buttons">
+        <button onclick="addToCart()">Add to Cart</button>
+        <a href="shop1.html">Back to Shopping</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("product_name");
+    const id = params.get("product_id");
+
+    const products = {
+      "001": {
+        name: "Bag",
+        description: "Stylish leather bag for everyday use.",
+        image: "images/card-image10.jpg",
+        price: 799
+      },
+      "002": {
+        name: "Top",
+        description: "Casual and trendy top.",
+        image: "images/top2-1.jpg",
+        price: 499
+      },
+      "003": {
+        name: "Ethnic Wear",
+        description: "Elegant traditional dress.",
+        image: "images/ethinic1-2.jpg",
+        price: 1199
+      },
+      "004": {
+        name: "Shoes",
+        description: "Comfortable running shoes.",
+        image: "images/shoes3-1.webp",
+        price: 1299
+      },
+      "005": {
+        name: "Watch",
+        description: "Classic wristwatch.",
+        image: "images/watch1-2.jpg",
+        price: 699
+      },
+      "006": {
+        name: "T-shirt",
+        description: "Cotton t-shirt in black.",
+        image: "images/tshirt3-1.jpg",
+        price: 399
+      },
+      "007": {
+        name: "T-shirt",
+        description: "Cotton t-shirt in pink.",
+        image: "images/tshirt4-2.jpg",
+        price: 349
+      }
+    };
+
+    const product = products[id];
+    if (product) {
+      document.getElementById("product-name").textContent = product.name;
+      document.getElementById("product-description").textContent = product.description;
+      document.getElementById("product-price").textContent = product.price;
+      document.getElementById("product-image").src = product.image;
+    }
+
+    function addToCart() {
+      const quantity = parseInt(document.getElementById("quantity").value);
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({
+        id,
+        name: product.name,
+        price: product.price,
+        quantity,
+        image: product.image
+      });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Product added to cart!");
+    }
+  </script>
+
+</body>
+</html>

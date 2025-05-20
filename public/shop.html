@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop | CloudCart</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      background: #fff;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.03);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .shop-now {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      cursor: pointer;
+    }
+
+    .product-card:hover .shop-now {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Explore Products</h1>
+  <div class="product-grid">
+    <!-- Repeat for each image -->
+    <div class="product-card">
+      <img src="images/card-image10.jpg" alt="Bag">
+      <a href="product.html?product_name=Bag" class="shop-now">Shop Now</a>
+</div>
+    </div>
+
+    <div class="product-card">
+      <img src="images/top2-1.jpg" alt="Top">
+      <a href="product.html?product_name=Top" class="shop-now">Shop Now</a>
+</div>
+
+
+    <div class="product-card">
+      <img src="images/ethinic1-2.jpg" alt="Ethnic Wear">
+      <a href="product.html?product_name=Ethinic Wear" class="shop-now">Shop Now</a>
+</div>
+
+
+    <div class="product-card">
+      <img src="images/shoes3-1.webp" alt="Shoes">
+      <a href="product.html?product_name=Shoes" class="shop-now">Shop Now</a>
+</div>
+
+
+    <div class="product-card">
+      <img src="images/hoddie1-2.jpg" alt="Hoddie">
+     <a href="product.html?product_name=Hoddie" class="shop-now">Shop Now</a>
+</div>
+
+
+    <div class="product-card">
+      <img src="images/jeans3-2.jpg" alt="Jeans">
+      <div class="shop-now">Shop Now</div>
+    </div>
+
+     <div class="product-card">
+      <img src="images/bag1-1.jpg" alt="Bag">
+      <div class="shop-now">Shop Now</div>
+    </div>
+
+    <div class="product-card">
+      <img src="images/watch1-2.jpg" alt="Watch">
+      <div class="shop-now">Shop Now</div>
+    </div>
+  </div>
+
+  <div class="product-card">
+      <img src="images/top1-1.jpg" alt="Top">
+      <div class="shop-now">Shop Now</div>
+    </div>
+  </div>
+
+</body>
+</html>
