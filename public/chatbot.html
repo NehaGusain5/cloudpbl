@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Chat Bot</title>
+  <style>
+    #chatbox {
+      width: 300px;
+      height: 400px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      overflow-y: scroll;
+      background: #fff;
+    }
+
+    #userInput {
+      width: 240px;
+      padding: 10px;
+    }
+
+    #sendBtn {
+      padding: 10px;
+    }
+
+    .message {
+      margin: 10px 0;
+    }
+
+    .user { text-align: right; color: blue; }
+    .bot { text-align: left; color: green; }
+  </style>
+</head>
+<body>
+
+<h3>Ask me anything!</h3>
+<div id="chatbox"></div>
+<input type="text" id="userInput" placeholder="Type your message..." />
+<button id="sendBtn">Send</button>
+
+<script>
+document.getElementById("sendBtn").onclick = async function () {
+  const userInput = document.getElementById("userInput").value;
+  if (!userInput.trim()) return;
+
+  const chatbox = document.getElementById("chatbox");
+  chatbox.innerHTML += `<div class='message user'>You: ${userInput}</div>`;
+  document.getElementById("userInput").value = "";
+
+  // Send request to backend
+  const response = await fetch("/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: userInput })
+  });
+
+  const data = await response.json();
+  chatbox.innerHTML += `<div class='message bot'>Bot: ${data.reply}</div>`;
+  chatbox.scrollTop = chatbox.scrollHeight;
+};
+</script>
+
+</body>
+</html>

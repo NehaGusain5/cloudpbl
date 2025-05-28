@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const authRoutes = require('./routes/auth');
+const cartRoutes = require('./routes/cart');
+const productRoutes = require('./routes/products');
 
 const app = express();
 
@@ -25,6 +27,8 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/cloudcart
 
 // Routes
 app.use('/api', authRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/products', productRoutes);
 
 // Serve login.html for root route
 app.get('/', (req, res) => {

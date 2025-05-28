@@ -1,122 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Shop | CloudCart</title>
-  <link rel="stylesheet" href="/style.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-
-    .product-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      background: #fff;
-      transition: transform 0.3s;
-    }
-
-    .product-card:hover {
-      transform: scale(1.03);
-    }
-
-    .product-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .shop-now {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0, 0, 0, 0.7);
-      color: #fff;
-      text-align: center;
-      padding: 10px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      cursor: pointer;
-    }
-
-    .product-card:hover .shop-now {
-      opacity: 1;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <h1>Explore Products</h1>
-  <div class="product-grid">
-    <!-- Repeat for each image -->
-    <div class="product-card">
-      <img src="images/card-image10.jpg" alt="Bag">
-      <a href="product.html?product_name=Bag" class="shop-now">Shop Now</a>
-</div>
+    <div class="container">
+        <h1>Our Products</h1>
+        <div id="products-grid">
+            <!-- Products will be dynamically added here -->
+        </div>
     </div>
 
-    <div class="product-card">
-      <img src="images/top2-1.jpg" alt="Top">
-      <a href="product.html?product_name=Top" class="shop-now">Shop Now</a>
-</div>
+    <script>
+        // Get token from localStorage
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = '/login.html';
+        }
 
+        // Fetch products
+        async function fetchProducts() {
+            try {
+                const response = await fetch('/api/products');
+                const products = await response.json();
+                displayProducts(products);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
 
-    <div class="product-card">
-      <img src="images/ethinic1-2.jpg" alt="Ethnic Wear">
-      <a href="product.html?product_name=Ethinic Wear" class="shop-now">Shop Now</a>
-</div>
+        // Display products
+        function displayProducts(products) {
+            const productsGrid = document.getElementById('products-grid');
+            productsGrid.innerHTML = '';
 
+            products.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product-card';
+                productElement.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p class="price">$${product.price}</p>
+                    <button onclick="addToCart('${product._id}')" class="btn">Add to Cart</button>
+                `;
+                productsGrid.appendChild(productElement);
+            });
+        }
 
-    <div class="product-card">
-      <img src="images/shoes3-1.webp" alt="Shoes">
-      <a href="product.html?product_name=Shoes" class="shop-now">Shop Now</a>
-</div>
+        // Add to cart
+        async function addToCart(productId) {
+            try {
+                const response = await fetch('/api/cart/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        productId,
+                        quantity: 1
+                    })
+                });
+                const result = await response.json();
+                alert('Product added to cart!');
+            } catch (error) {
+                console.error('Error adding to cart:', error);
+                alert('Error adding product to cart');
+            }
+        }
 
-
-    <div class="product-card">
-      <img src="images/hoddie1-2.jpg" alt="Hoddie">
-     <a href="product.html?product_name=Hoddie" class="shop-now">Shop Now</a>
-</div>
-
-
-    <div class="product-card">
-      <img src="images/jeans3-2.jpg" alt="Jeans">
-      <div class="shop-now">Shop Now</div>
-    </div>
-
-     <div class="product-card">
-      <img src="images/bag1-1.jpg" alt="Bag">
-      <div class="shop-now">Shop Now</div>
-    </div>
-
-    <div class="product-card">
-      <img src="images/watch1-2.jpg" alt="Watch">
-      <div class="shop-now">Shop Now</div>
-    </div>
-  </div>
-
-  <div class="product-card">
-      <img src="images/top1-1.jpg" alt="Top">
-      <div class="shop-now">Shop Now</div>
-    </div>
-  </div>
-
+        // Initial products load
+        fetchProducts();
+    </script>
 </body>
 </html>

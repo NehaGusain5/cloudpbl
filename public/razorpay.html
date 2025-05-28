@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pay Now - E-Commerce</title>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .payment-box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #0c8aff;
+      color: white;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0667c2;
+    }
+  </style>
+</head>
+<body>
+
+<div class="payment-box">
+  <h2>Complete Your Payment</h2>
+  <p><strong>Amount:</strong> ₹499</p>
+  <button onclick="makePayment()">Pay Now</button>
+</div>
+
+<script>
+  function makePayment() {
+    var options = {
+      "key": "rzp_test_YourKeyHere", // Replace with your Razorpay Test Key
+      "amount": 49900, // Amount in paise (₹499 = 49900)
+      "currency": "INR",
+      "name": "My E-Commerce",
+      "description": "Order #1234",
+      "image": "https://yourdomain.com/logo.png", // Optional: Add your logo
+      "handler": function (response) {
+        alert("✅ Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
+        // You can send response.razorpay_payment_id to your backend for verification
+      },
+      "prefill": {
+        "name": "Rahul Kohli",
+        "email": "rahulkohli2005@gmail.com",
+        "contact": "9997210830"
+      },
+      "notes": {
+        "address": "E-commerce Delivery"
+      },
+      "theme": {
+        "color": "#0c8aff"
+      }
+    };
+
+    var rzp = new Razorpay(options);
+    rzp.open();
+  }
+</script>
+
+</body>
+</html>
