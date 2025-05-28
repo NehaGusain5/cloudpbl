@@ -3,9 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
-const authRoutes = require('./routes/auth');
-const cartRoutes = require('./routes/cart');
-const productRoutes = require('./routes/products');
+const authRoutes = require('./routes/auth.js');
 
 const app = express();
 
@@ -27,16 +25,19 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/cloudcart
 
 // Routes
 app.use('/api', authRoutes);
-app.use('/api/cart', cartRoutes);
-app.use('/api/products', productRoutes);
 
 // Serve login.html for root route
-app.get('/', (req, res) => {
+app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
+app.get('/signup', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'signup.html'));
+});
+
+
 // Serve index.html
-app.get('/index.html', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
@@ -52,4 +53,4 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-}); 
+});  
