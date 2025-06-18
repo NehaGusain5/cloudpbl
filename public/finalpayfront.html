@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pay Now - E-Commerce</title>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<style>
+body {
+font-family: Arial, sans-serif;
+background-color: #f0f2f5;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+}
+
+.payment-box {
+background: #fff;
+padding: 30px;
+box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+border-radius: 10px;
+text-align: center;
+}
+
+button {
+padding: 12px 25px;
+font-size: 16px;
+border: none;
+background-color: #008CBA;
+color: white;
+border-radius: 5px;
+cursor: pointer;
+}
+
+button:hover {
+background-color: #007B9E;
+}
+</style>
+</head>
+<body>
+<div class="payment-box">
+<h2>Pay for Your Order</h2>
+<p>Amount: ₹500</p>
+<button id="payBtn">Pay Now</button>
+</div>
+
+<script>
+document.getElementById('payBtn').onclick = async function(e) {
+e.preventDefault();
+
+const res = await fetch('http://localhost:3000/create-order', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json'
+}
+});
+
+const orderData = await res.json();
+
+const options = {
+"key": "YOUR_RAZORPAY_KEY_ID", // Replace with your test Razorpay key
+"amount": orderData.amount,
+"currency": "INR",
+"name": "E-Commerce Store",
+"description": "Test Transaction",
+"order_id": orderData.id,
+"handler": function (response) {
+alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+},
+"prefill": {
+"name": "Rahul Kohli",
+"email": "rahulkohli2005@gmail.com",
+"contact": "9997210830"
+},
+"theme": {
+"color": "#3399cc"
+}
+};
+
+const rzp = new Razorpay(options);
+rzp.open();
+};
+</script>
+</body>
+</html>

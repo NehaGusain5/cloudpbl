@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CloudCart</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar flex container">
+      <a href="#" class="logo">Cloud<span>Cart</span></a>
+      <ul class="navlist flex">
+        <li><a href="index.html" class="link">Home</a></li>
+        <li><a href="/shop1.html" class="link">Shop</a></li>
+        <li><a href="/cart.html" class="link">Cart</a></li>
+        <li><a href="/chatbot.html" class="link">AI Assistant</a></li>
+        <li><a href="#contact" class="link">Contact</a></li>
+        <li><a href="#feedback" class="link">Feedback</a></li>
+        <li><a href="http://localhost:3000/login.html" class="link">Logout</a></li>
+        <!-- <li class="nav-icons flex">
+          <a href="#" class="icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+          <a href="#" class="icon"><i class="fa-solid fa-user"></i></a>
+          <a href="#" class="icon icon-active"><i class="fa-solid fa-shopping-bag"></i></a>
+        </li> -->
+      </ul>
+      <!-- <a href="#" class="hamburger">
+        <i class="fa-solid fa-bars"></i>
+      </a> -->
+    </nav>
+  </header>
+
+  <main>
+    <!-- <section class="hero" id="home">
+      <div class="hero-content flex container">
+        <div>
+          <h3>Summer Fashion</h3>
+          <h1>New Collection</h1>
+          <h4>Big sale of this week up to <span>30%</span></h4>
+          <a href="shop1.html"><button class="shop-now">Shop Now</button></a>
+        </div>
+      </div>
+    </section> -->
+
+    <section class="contact-form section" id="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="feedback-form section" id="feedback">
+      <div class="container">
+        <h2>Feedback Form</h2>
+        <form id="feedbackForm">
+          <label for="user-experience">Experience:</label>
+          <select id="user-experience" name="rating" required>
+            <option value="">-- Select --</option>
+            <option value="5">Excellent</option>
+            <option value="4">Good</option>
+            <option value="3">Average</option>
+            <option value="2">Poor</option>
+          </select>
+          <label for="comments">Comments:</label>
+          <textarea id="comments" name="feedback" required></textarea>
+          <button type="submit">Submit Feedback</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
+
+  <!-- 🚀 Improved ScrollSpy Script -->
+  <script>
+    const sections = document.querySelectorAll("main section[id]");
+    const navLinks = document.querySelectorAll(".navlist .link");
+
+    function scrollSpy() {
+      let currentSectionId = null;
+      let closestSection = null;
+      let minDistance = Infinity;
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const distanceFromTop = Math.abs(rect.top - 150);
+
+        if (rect.top <= window.innerHeight / 2 && rect.bottom > 150) {
+          if (distanceFromTop < minDistance) {
+            minDistance = distanceFromTop;
+            closestSection = section;
+          }
+        }
+      });
+
+      if (closestSection) {
+        currentSectionId = closestSection.id;
+      }
+
+      navLinks.forEach((link) => {
+        link.classList.remove("link-active");
+        if (link.getAttribute("href") === "#" + currentSectionId) {
+          link.classList.add("link-active");
+        }
+      });
+
+      if (window.scrollY === 0) {
+        navLinks.forEach((link) => {
+          link.classList.remove("link-active");
+          if (link.getAttribute("href") === "#") {
+            link.classList.add("link-active");
+          }
+        });
+      }
+    }
+
+    window.addEventListener("scroll", scrollSpy);
+    scrollSpy();
+
+    // Highlight tab when clicked
+    navLinks.forEach((link) => {
+      link.addEventListener("click", function () {
+        navLinks.forEach((lnk) => lnk.classList.remove("link-active"));
+        this.classList.add("link-active");
+      });
+    });
+
+    // ✅ Contact Form Submission
+    document.getElementById("contactForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const data = new FormData(event.target);
+      const response = await fetch("http://localhost:3000/contact", {
+        method: "POST",
+        body: JSON.stringify(Object.fromEntries(data)),
+        headers: { "Content-Type": "application/json" },
+      });
+      alert((await response.json()).message);
+    });
+
+    // ✅ Feedback Form Submission
+    document.getElementById("feedbackForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const data = new FormData(event.target);
+      const response = await fetch("http://localhost:3000/feedback", {
+        method: "POST",
+        body: JSON.stringify(Object.fromEntries(data)),
+        headers: { "Content-Type": "application/json" },
+      });
+      alert((await response.json()).message);
+    });
+  </script>
+</body>
+</html>

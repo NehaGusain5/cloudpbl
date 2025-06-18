@@ -1,0 +1,280 @@
+# CloudCart Product Catalog
+
+## FOOTWEAR
+1. Running Shoes
+   - Price: ₹999
+   - Description: Comfortable running shoes for daily use
+   - Category: Footwear
+   - ID: 001
+
+2. Casual Shoes
+   - Price: ₹799
+   - Description: Stylish casual shoes
+   - Category: Footwear
+   - ID: 002
+
+3. Sports Shoes
+   - Price: ₹1299
+   - Description: Professional sports shoes
+   - Category: Footwear
+   - ID: 003
+
+4. Formal Shoes
+   - Price: ₹1499
+   - Description: Elegant formal shoes
+   - Category: Footwear
+   - ID: 004
+
+5. Designer Sneakers
+   - Price: ₹1199
+   - Description: Trendy designer sneakers
+   - Category: Footwear
+   - ID: 005
+
+## BAGS
+1. Leather Bag
+   - Price: ₹1499
+   - Description: Stylish leather bag for everyday use
+   - Category: Bags
+   - ID: 006
+
+2. Cross-body Sling
+   - Price: ₹899
+   - Description: Durable sling bag for travel
+   - Category: Bags
+   - ID: 007
+
+3. Tote Bag
+   - Price: ₹699
+   - Description: Spacious tote bag
+   - Category: Bags
+   - ID: 008
+
+4. Designer Clutch
+   - Price: ₹1299
+   - Description: Elegant evening clutch
+   - Category: Bags
+   - ID: 009
+
+5. Laptop Bag
+   - Price: ₹999
+   - Description: Professional laptop bag
+   - Category: Bags
+   - ID: 010
+
+## T-SHIRTS
+1. Black T-Shirt
+   - Price: ₹499
+   - Description: Classic black cotton t-shirt
+   - Category: T-Shirts
+   - ID: 011
+
+2. Pink T-Shirt
+   - Price: ₹449
+   - Description: Clean pink cotton t-shirt
+   - Category: T-Shirts
+   - ID: 012
+
+3. Korean T-Shirt
+   - Price: ₹599
+   - Description: Trendy korean print t-shirt
+   - Category: T-Shirts
+   - ID: 013
+
+4. Trendy T-Shirt
+   - Price: ₹549
+   - Description: Trendy t-shirt
+   - Category: T-Shirts
+   - ID: 014
+
+5. Back print T-Shirt
+   - Price: ₹499
+   - Description: Stylish t-shirt
+   - Category: T-Shirts
+   - ID: 015
+
+## JEANS
+1. Blue Jeans
+   - Price: ₹1299
+   - Description: Classic blue denim jeans
+   - Category: Jeans
+   - ID: 016
+
+2. Black Jeans
+   - Price: ₹1199
+   - Description: Stylish black denim jeans
+   - Category: Jeans
+   - ID: 017
+
+3. Skinny Jeans
+   - Price: ₹1099
+   - Description: Comfortable skinny fit jeans
+   - Category: Jeans
+   - ID: 018
+
+4. Bootcut Jeans
+   - Price: ₹999
+   - Description: Classic bootcut style jeans
+   - Category: Jeans
+   - ID: 019
+
+5. Distressed Jeans
+   - Price: ₹1299
+   - Description: Trendy distressed denim
+   - Category: Jeans
+   - ID: 020
+
+## ETHNIC WEAR
+1. Traditional Dress
+   - Price: ₹2499
+   - Description: Elegant traditional dress
+   - Category: Ethnic Wear
+   - ID: 021
+
+2. Designer Kurta
+   - Price: ₹1799
+   - Description: Beautiful embroidered kurta
+   - Category: Ethnic Wear
+   - ID: 022
+
+3. Silk Saree
+   - Price: ₹2999
+   - Description: Elegant silk saree
+   - Category: Ethnic Wear
+   - ID: 023
+
+4. Men Kurta
+   - Price: ₹1299
+   - Description: Men Kurta collection
+   - Category: Ethnic Wear
+   - ID: 024
+
+5. Party Wear Men Kurta
+   - Price: ₹1599
+   - Description: Party wear Men Kurta
+   - Category: Ethnic Wear
+   - ID: 025
+
+## SKINCARE
+1. Face Cream
+   - Price: ₹699
+   - Description: Moisturizing face cream
+   - Category: Skincare
+   - ID: 026
+
+2. Vitamin C Serum
+   - Price: ₹899
+   - Description: Brightening face serum
+   - Category: Skincare
+   - ID: 027
+
+3. Face Wash
+   - Price: ₹399
+   - Description: Gentle cleansing face wash
+   - Category: Skincare
+   - ID: 028
+
+4. Sunscreen
+   - Price: ₹549
+   - Description: Broad spectrum sunscreen
+   - Category: Skincare
+   - ID: 029
+
+5. Clay Face Mask
+   - Price: ₹499
+   - Description: Deep cleansing face mask
+   - Category: Skincare
+   - ID: 030
+
+## ACCESSORIES
+1. Classic Watch
+   - Price: ₹1999
+   - Description: Elegant wristwatch
+   - Category: Accessories
+   - ID: 031
+
+2. Gold Necklace
+   - Price: ₹2499
+   - Description: Elegant gold necklace
+   - Category: Accessories
+   - ID: 032
+
+3. Diamond Earrings
+   - Price: ₹2999
+   - Description: Sparkling diamond earrings
+   - Category: Accessories
+   - ID: 033
+
+4. Silver Bracelet
+   - Price: ₹1499
+   - Description: Stylish silver bracelet
+   - Category: Accessories
+   - ID: 034
+
+5. Designer Sunglasses
+   - Price: ₹1299
+   - Description: Trendy sunglasses
+   - Category: Accessories
+   - ID: 035
+
+## PERFUMES
+1. Luxury Perfume
+   - Price: ₹2499
+   - Description: Premium fragrance
+   - Category: Perfumes
+   - ID: 036
+
+2. Men's Cologne
+   - Price: ₹1999
+   - Description: Fresh and masculine scent
+   - Category: Perfumes
+   - ID: 037
+
+3. Floral Perfume
+   - Price: ₹1799
+   - Description: Delicate floral fragrance
+   - Category: Perfumes
+   - ID: 038
+
+4. Woody Perfume
+   - Price: ₹2199
+   - Description: Rich woody fragrance
+   - Category: Perfumes
+   - ID: 039
+
+5. Unisex Perfume
+   - Price: ₹1899
+   - Description: Versatile unisex fragrance
+   - Category: Perfumes
+   - ID: 040
+
+## WINTER COLLECTION
+1. Woolen Sweater
+   - Price: ₹1299
+   - Description: Warm and cozy woolen sweater
+   - Category: Winter Collection
+   - ID: 041
+
+2. Winter Jacket
+   - Price: ₹2499
+   - Description: Stylish and warm winter jacket
+   - Category: Winter Collection
+   - ID: 042
+
+3. Thermal Wear
+   - Price: ₹899
+   - Description: Comfortable thermal inner wear
+   - Category: Winter Collection
+   - ID: 043
+
+4. Winter Boots
+   - Price: ₹1799
+   - Description: Waterproof winter boots
+   - Category: Winter Collection
+   - ID: 044
+
+5. Winter Scarf
+   - Price: ₹699
+   - Description: Warm and stylish winter scarf
+   - Category: Winter Collection
+   - ID: 045 

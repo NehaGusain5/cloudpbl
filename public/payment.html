@@ -330,18 +330,32 @@
 </main>
 
 <script>
-  // Retrieve and display total price
-  const productTotal = parseInt(localStorage.getItem("totalPrice")) || 0;
+  // Calculate total from cart items
+  function getCartTotal() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let total = 0;
+    
+    cart.forEach(item => {
+      const price = parseFloat(item.price.replace(/[^\d.-]/g, ''));
+      const quantity = parseInt(item.quantity) || 1;
+      total += price * quantity;
+    });
+    
+    return total;
+  }
+
+  // Get totals and update display
+  const productTotal = getCartTotal();
   const shipping = 20;
   const finalAmount = productTotal + shipping;
 
-  document.getElementById("product-total").textContent = `₹${productTotal}`;
-  document.getElementById("final-total").textContent = `₹${finalAmount}`;
+  document.getElementById("product-total").textContent = `₹${productTotal.toFixed(2)}`;
+  document.getElementById("final-total").textContent = `₹${finalAmount.toFixed(2)}`;
 
   // Redirect to Razorpay on form submit
   document.getElementById("payment-form").addEventListener("submit", function(event) {
     event.preventDefault(); // Stop form from reloading the page
-    window.location.href = "paytm.html"; // Redirect to payment gateway page
+    window.location.href = "finalpayfront.html"; // Redirect to payment gateway page
   });
 </script>
 

@@ -1,63 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>AI Chat Bot</title>
-  <style>
-    #chatbox {
-      width: 300px;
-      height: 400px;
-      border: 1px solid #ccc;
-      padding: 10px;
-      overflow-y: scroll;
-      background: #fff;
-    }
-
-    #userInput {
-      width: 240px;
-      padding: 10px;
-    }
-
-    #sendBtn {
-      padding: 10px;
-    }
-
-    .message {
-      margin: 10px 0;
-    }
-
-    .user { text-align: right; color: blue; }
-    .bot { text-align: left; color: green; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudCart - AI Assistant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        .chat-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .chat-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .chat-interface {
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+        .message {
+            margin-bottom: 15px;
+            max-width: 80%;
+        }
+        .message.user {
+            margin-left: auto;
+            background: #2563eb;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 15px 15px 0 15px;
+        }
+        .message.assistant {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 15px 15px 15px 0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        .chat-input button {
+            padding: 12px 25px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        .product-recommendation {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+        .product-recommendation button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        #typingIndicator {
+            font-style: italic;
+            color: #555;
+            padding: 0 20px;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <nav class="navbar flex container">
+            <a href="/" class="logo">
+                Cloud<span>Cart</span>
+            </a>
+            <ul class="navlist flex">
+                <li><a href="/" class="link">Home</a></li>
+                <li><a href="/shop1.html" class="link">Shop</a></li>
+                <li><a href="/cart.html" class="link">Cart</a></li>
+                <li><a href="/chatbot.html" class="link link-active">AI Assistant</a></li>
+                <li><a href="#" class="link">Contact</a></li>
+                <li><a href="help-support.html" class="link">Help & Support</a></li>
+                <li><a href="/login.html" class="link">Logout</a></li>
+            </ul>
+            <a href="#" class="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+        </nav>
+    </header>
 
-<h3>Ask me anything!</h3>
-<div id="chatbox"></div>
-<input type="text" id="userInput" placeholder="Type your message..." />
-<button id="sendBtn">Send</button>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Cloud - AI Shopping Assistant</h2>
+            <p>Ask me what you need, and I'll help you shop smart! 🛍️</p>
+        </div>
 
-<script>
-document.getElementById("sendBtn").onclick = async function () {
-  const userInput = document.getElementById("userInput").value;
-  if (!userInput.trim()) return;
+        <div class="chat-interface">
+            <div class="chat-messages" id="chatMessages"></div>
+            <div id="typingIndicator" style="display:none;">Cloud is thinking...</div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type your message...">
+                <button id="sendButton"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
 
-  const chatbox = document.getElementById("chatbox");
-  chatbox.innerHTML += `<div class='message user'>You: ${userInput}</div>`;
-  document.getElementById("userInput").value = "";
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+        const sendButton = document.getElementById('sendButton');
+        const typingIndicator = document.getElementById('typingIndicator');
 
-  // Send request to backend
-  const response = await fetch("/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: userInput })
-  });
+        let products = {};
+        const productSections = [
+            'Footwear', 'Bags', 'T-Shirts', 'Jeans', 'Ethnic Wear', 
+            'Skincare', 'Accessories', 'Perfumes', 'Winter Collection'
+        ];
 
-  const data = await response.json();
-  chatbox.innerHTML += `<div class='message bot'>Bot: ${data.reply}</div>`;
-  chatbox.scrollTop = chatbox.scrollHeight;
-};
-</script>
+        // Product prices mapping
+        const productPrices = {
+            'Running Shoes': 500,
+            'Casual Shoes': 799,
+            'Sports Shoes': 1299,
+            'Formal Shoes': 1499,
+            'Designer Sneakers': 1199,
+            'Leather Bag': 1499,
+            'Cross-body sling': 899,
+            'Tote Bag': 699,
+            'Designer Clutch': 1299,
+            'Laptop Bag': 999,
+            'Black T-Shirt': 499,
+            'Pink T-Shirt': 449,
+            'Korean T-Shirt': 599,
+            'Trendy T-Shirt': 549,
+            'Back print T-Shirt': 499,
+            'Blue Jeans': 1299,
+            'Black Jeans': 1199,
+            'Skinny Jeans': 1099,
+            'Bootcut Jeans': 999,
+            'Distressed Jeans': 1299,
+            'Traditional Dress': 2499,
+            'Designer Kurta': 1799,
+            'Silk Saree': 2999,
+            'Men Kurta': 1299,
+            'Party Wear Men Kurta': 1599,
+            'Face Cream': 699,
+            'Vitamin C Serum': 899,
+            'Face Wash': 399,
+            'Sunscreen': 549,
+            'Clay Face Mask': 499,
+            'Classic Watch': 1999,
+            'Gold Necklace': 2499,
+            'Diamond Earrings': 2999,
+            'Silver Bracelet': 1499,
+            'Designer Sunglasses': 1299,
+            'Luxury Perfume': 2499,
+            'Men\'s Cologne': 1999,
+            'Floral Perfume': 1799,
+            'Woody Perfume': 2199,
+            'Unisex Perfume': 1899,
+            'Woolen Sweater': 1299,
+            'Winter Jacket': 2499,
+            'Thermal Wear': 899,
+            'Winter Boots': 1799,
+            'Winter Scarf': 699
+        };
 
+        // Product name mapping to ensure correct product names in URLs
+        const productNameMapping = {
+            'Running Shoes': { id: '001', urlName: 'Running Shoes' },
+            'Casual Shoes': { id: '002', urlName: 'Casual Shoes' },
+            'Sports Shoes': { id: '003', urlName: 'Sports Shoes' },
+            'Formal Shoes': { id: '004', urlName: 'Formal Shoes' },
+            'Designer Sneakers': { id: '005', urlName: 'Designer Sneakers' },
+            'Leather Bag': { id: '006', urlName: 'Leather Bag' },
+            'Cross-body sling': { id: '007', urlName: 'Backpack' },
+            'Tote Bag': { id: '008', urlName: 'Tote Bag' },
+            'Designer Clutch': { id: '009', urlName: 'Designer Clutch' },
+            'Laptop Bag': { id: '010', urlName: 'Laptop Bag' },
+            'Black T-Shirt': { id: '011', urlName: 'Black T-Shirt' },
+            'Pink T-Shirt': { id: '012', urlName: 'White T-Shirt' },
+            'Korean T-Shirt': { id: '013', urlName: 'Graphic T-Shirt' },
+            'Trendy T-Shirt': { id: '014', urlName: 'Polo T-Shirt' },
+            'Back print T-Shirt': { id: '015', urlName: 'V-Neck T-Shirt' },
+            'Blue Jeans': { id: '016', urlName: 'Blue Jeans' },
+            'Black Jeans': { id: '017', urlName: 'Black Jeans' },
+            'Skinny Jeans': { id: '018', urlName: 'Skinny Jeans' },
+            'Bootcut Jeans': { id: '019', urlName: 'Bootcut Jeans' },
+            'Distressed Jeans': { id: '020', urlName: 'Distressed Jeans' },
+            'Traditional Dress': { id: '021', urlName: 'Traditional Dress' },
+            'Sunscreen': {id:'029', urlName: 'Sunscreen'}
+        };
+
+        // Fetch products from shop1.html
+        async function fetchProducts() {
+            try {
+                const response = await fetch('shop1.html');
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                
+                // Extract products from each section
+                const sections = doc.querySelectorAll('.product-section');
+                sections.forEach(section => {
+                    const category = section.querySelector('h2').textContent;
+                    const productCards = section.querySelectorAll('.product-card');
+                    
+                    products[category] = Array.from(productCards).map(card => {
+                        const name = card.querySelector('h3').textContent;
+                        const shopNowLink = card.querySelector('.shop-now');
+                        const productInfo = productNameMapping[name] || { id: '', urlName: name };
+                        const description = card.querySelector('p').textContent;
+                        const image = card.querySelector('img').src;
+                        
+                        return {
+                            name: name,
+                            description: description,
+                            price: productPrices[name] ,
+                            image: image,
+                            category: category,
+                            productId: productInfo.id,
+                            urlName: productInfo.urlName
+                        };
+                    });
+                });
+            } catch (error) {
+                console.error('Error fetching products:', error);
+                // Fallback to default products if fetch fails
+                products = {
+                    'Footwear': [
+                        { name: 'Running Shoes', description: 'Comfortable running shoes', price: 999, productId: '001', urlName: 'Running Shoes' },
+                        { name: 'Casual Shoes', description: 'Stylish casual wear shoes', price: 799, productId: '002', urlName: 'Casual Shoes' },
+                        { name: 'Sports Shoes', description: 'Proffesional sports shoes', price: 1299, productId: '002', urlName: 'Sports Shoes' }
+                    ],
+                    'Bags': [
+                        { name: 'Leather Bag', description: 'Premium leather handbag', price: 1499, productId: '006', urlName: 'Leather Bag' },
+                        { name: 'Cross-body sling', description: 'Durable sling bag', price: 899, productId: '007', urlName: 'Backpack' }
+                    ],
+                    'Skincare': [
+                        { name: 'Face wash', description: 'Skincare ', price: 999, productId: '001', urlName: 'Face wash' },
+                        { name: 'Sunscreen', description: 'Skincare', price: 599, productId: '002', urlName: 'Sunscreen' },
+                        { name: 'Serum', description: 'Skincare', price: 1299, productId: '003', urlName: 'Serum' },
+                        { name: 'Face mask', description: 'Skincare', price: 1299, productId: '004', urlName: 'Face mask' }
+                    ],
+                    'Accessories': [
+                        { name: 'Watch', description: 'Accessories ', price: 999, productId: '001', urlName: 'watch' },
+                        { name: 'Earing', description: 'Accessories', price: 99, productId: '002', urlName: 'earing' },
+                        { name: 'Necklace', description: 'Acessories', price: 299, productId: '003', urlName: 'Necklace' },
+                        { name: 'Sunglass', description: 'Accessories', price: 499, productId: '004', urlName: 'Sunglass' },
+                        { name: 'Bracelet', description: 'Accessories', price: 399, productId: '005', urlName: 'Bracelet' }
+                    ]
+                };
+            }
+        }
+
+        function addMessage(text, type) {
+            const div = document.createElement('div');
+            div.className = `message ${type}`;
+            div.textContent = text;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTyping() { typingIndicator.style.display = 'block'; }
+        function hideTyping() { typingIndicator.style.display = 'none'; }
+
+        function respondWithDelay(callback) {
+            showTyping();
+            setTimeout(() => {
+                hideTyping();
+                callback();
+            }, 1000 + Math.random() * 1000);
+        }
+
+        function addProductRecommendation(product) {
+            const div = document.createElement('div');
+            div.className = 'product-recommendation';
+            div.innerHTML = `
+                <h4>${product.name}</h4>
+                <p>${product.description}</p>
+                <p>Price: ₹${product.price}</p>
+                <button onclick="goToShop()">Shop Now</button>
+            `;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function goToShop() {
+            window.location.href = 'shop1.html';
+        }
+
+        let conversationState = {
+            step: 'greeting',
+            selectedCategory: '',
+            matchedProducts: []
+        };
+
+        function showProductSections() {
+            let sectionsList = "Here are our available sections:\n";
+            productSections.forEach((section, index) => {
+                sectionsList += `${index + 1}. ${section}\n`;
+            });
+            sectionsList += "\nPlease type the section name you're interested in.";
+            addMessage(sectionsList, 'assistant');
+        }
+
+        function handleUserInput() {
+            const message = userInput.value.trim();
+            if (!message) return;
+            addMessage(message, 'user');
+            userInput.value = '';
+
+            switch (conversationState.step) {
+                case 'greeting':
+                    respondWithDelay(() => {
+                        if (message.toLowerCase().includes('hello') || message.toLowerCase().includes('hi')) {
+                            addMessage("Hello! How can I help you today? 😊", 'assistant');
+                            conversationState.step = 'askIntent';
+                        } else {
+                            addMessage("Hello! How can I help you today? 😊", 'assistant');
+                            conversationState.step = 'askIntent';
+                        }
+                    });
+                    break;
+
+                case 'askIntent':
+                    respondWithDelay(() => {
+                        if (message.toLowerCase().includes('order') || message.toLowerCase().includes('track') || 
+                            message.toLowerCase().includes('delivery status') || message.toLowerCase().includes('my order') ||
+                            message.toLowerCase().includes('shipping') || message.toLowerCase().includes('where is my package')) {
+                            addMessage("For detailed information about your order, please visit our Help & Support page. Would you like me to take you there? 😊", 'assistant');
+                            const div = document.createElement('div');
+                            div.className = 'message assistant';
+                            div.innerHTML = '<a href="help-support.html" style="color: #2563eb; text-decoration: underline;">Visit Help & Support</a>';
+                            chatMessages.appendChild(div);
+                            chatMessages.scrollTop = chatMessages.scrollHeight;
+                        }
+                        else if (message.toLowerCase().includes('shop') || message.toLowerCase().includes('buy') || 
+                            message.toLowerCase().includes('product') || message.toLowerCase().includes('looking')) {
+                            addMessage("Great! Which section of products would you like to visit?", 'assistant');
+                            showProductSections();
+                            conversationState.step = 'selectCategory';
+                        } else {
+                            addMessage("I'm here to help you shop! Would you like to see our products?", 'assistant');
+                        }
+                    });
+                    break;
+
+                case 'selectCategory':
+                    respondWithDelay(() => {
+                        const selectedCategory = productSections.find(section => 
+                            section.toLowerCase() === message.toLowerCase()
+                        );
+                        
+                        if (selectedCategory) {
+                            conversationState.selectedCategory = selectedCategory;
+                            addMessage(`Great choice! What's your budget for ${selectedCategory}? 💰`, 'assistant');
+                            conversationState.step = 'askBudget';
+                        } else {
+                            addMessage("Please select a valid section from the list:", 'assistant');
+                            showProductSections();
+                        }
+                    });
+                    break;
+
+                case 'askBudget':
+                    respondWithDelay(() => {
+                        const budget = parseFloat(message);
+                        if (isNaN(budget)) {
+                            addMessage("Please enter your budget in numbers 😊", 'assistant');
+                        } else {
+                            const categoryProducts = products[conversationState.selectedCategory] || [];
+                            const affordableProducts = categoryProducts.filter(p => p.price <= budget);
+                            
+                            if (affordableProducts.length > 0) {
+                                addMessage(`Here are the best options under ₹${budget} in ${conversationState.selectedCategory}:`, 'assistant');
+                                affordableProducts.forEach(addProductRecommendation);
+                                addMessage("Would you like to see products from another section?", 'assistant');
+                                conversationState.step = 'offerAlternative';
+                            } else {
+                                addMessage(`Sorry, no products available under ₹${budget} in ${conversationState.selectedCategory}. Would you like to see products from another section?`, 'assistant');
+                                conversationState.step = 'offerAlternative';
+                            }
+                        }
+                    });
+                    break;
+
+                case 'offerAlternative':
+                    respondWithDelay(() => {
+                        if (message.toLowerCase().includes('yes') || message.toLowerCase().includes('sure')) {
+                            showProductSections();
+                            conversationState.step = 'selectCategory';
+                        } else {
+                            addMessage("Thanks for visiting CloudCart! 👋 Happy shopping!", 'assistant');
+                            conversationState.step = 'completed';
+                        }
+                    });
+                    break;
+
+                default:
+                    respondWithDelay(() => {
+                        addMessage("Hello! How can I help you today? 😊", 'assistant');
+                        conversationState.step = 'askIntent';
+                    });
+                    break;
+            }
+        }
+
+        sendButton.addEventListener('click', handleUserInput);
+        userInput.addEventListener('keypress', e => { if (e.key === 'Enter') handleUserInput(); });
+
+        // Initialize chatbot
+        window.onload = async () => {
+            await fetchProducts();
+            addMessage("Hello! I'm Cloud 🤖, your AI shopping buddy. How can I help you today?", 'assistant');
+        }
+    </script>
 </body>
 </html>

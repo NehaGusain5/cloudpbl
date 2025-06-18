@@ -9,12 +9,12 @@
 </head>
     <header>
   <nav class="navbar flex container">
-    <a href="#" class="logo">Cloud<span>Cart</span></a>
+    <a href="index.html" class="logo">Cloud<span>Cart</span></a>
     <ul class="navlist flex">
       <li><a href="index.html" class="link">Home</a></li>
       <!-- <li><a href="#" class="link">Shop</a></li> -->
        <li>
-                <a href="#" class="link link-active">shop</a>
+                <a href="shop1.html" class="link link-active">shop</a>
             </li>
       <li><a href="cart.html" class="link">Cart</a></li>
       <li><a href="http://localhost:3000/login.html" class="link">Logout</a></li>
@@ -27,182 +27,434 @@
     <title>Shop | CloudCart</title>
     <link rel="stylesheet" href="/style.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            margin: 0;
-            padding: 20px;
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 30px 0 15px 20px;
+            color: #333;
         }
 
-        /* h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        } */
+        .product-section {
+            margin-bottom: 40px;
+        }
 
-        h1 {
-    display: block;
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    margin: 40px 0;
-}
-
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+        .product-scroll {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px;
             gap: 20px;
-            padding: 10px;
+            scroll-behavior: smooth;
         }
 
         .product-card {
+            flex: 0 0 250px;
             background: #fff;
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: scale(1.03);
         }
 
         .product-image {
             width: 100%;
-            height: auto;
+            height: 200px;
+            object-fit: cover;
             border-radius: 6px;
         }
 
         .shop-now {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 12px 18px;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-decoration: none;
-    background: linear-gradient(135deg, #ff0000, #000000); /* Red to Black Gradient */
-    color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease-in-out;
-    border: none;
-}
-
-.shop-now:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(135deg, #000000, #ff0000); /* Reverse Gradient */
-}
-
-
-        /* .shop-now {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 12px 18px;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-decoration: none;
-    background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient */
-    /* color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease-in-out;
-    border: none;
-} */ 
-
-/* .shop-now:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #feb47b, #ff7e5f); /* Reverse gradient */
-/* }  */
-
-        /* .shop-now {
             display: inline-block;
-            margin-top: 10px;
-            background: #008CBA;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #ff0000, #000000);
             color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
             text-decoration: none;
+            border-radius: 5px;
             font-weight: bold;
         }
-
-        .shop-now:hover {
-            background: #005f7a;
-        } */
     </style>
 </head>
 <body>
+    <header>
+        <nav class="navbar flex container">
+            <a href="index.html" class="logo">Cloud<span>Cart</span></a>
+            <ul class="navlist flex">
+                <li><a href="index.html" class="link">Home</a></li>
+                <li><a href="shop1.html" class="link link-active">Shop</a></li>
+                <li><a href="cart.html" class="link">Cart</a></li>
+                <li><a href="chatbot.html" class="link">AI Assistant</a></li>
+                <li><a href="http://localhost:3000/login.html" class="link">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
 
-   <h1>Explore Products</h1> 
-    
-    <div class="product-grid">
-        <div class="product-card">
-            <img src="images/card-image10.jpg" alt="Bag" class="product-image">
-            <h3>Bag</h3>
-            <p>Stylish leather bag for everyday use.</p>
-            <a href="product.html?product_name=Bag&product_id=001" class="shop-now">Shop Now</a>
-        </div>
+    <h1>Explore Products</h1>
 
-        <div class="product-card">
-            <img src="images/top2-1.jpg" alt="Top" class="product-image">
-            <h3>Top</h3>
-            <p>Casual and trendy top.</p>
-            <a href="product.html?product_name=Top&product_id=002" class="shop-now">Shop Now</a>
-        </div>
-
-        <div class="product-card">
-            <img src="images/ethinic1-2.jpg" alt="Ethnic Wear" class="product-image">
-            <h3>Ethnic Wear</h3>
-            <p>Elegant traditional dress.</p>
-            <a href="product.html?product_name=Ethnic Wear&product_id=003" class="shop-now">Shop Now</a>
-        </div>
-
-        <div class="product-card">
-            <img src="images/shoes3-1.webp" alt="Shoes" class="product-image">
-            <h3>Shoes</h3>
-            <p>Comfortable running shoes.</p>
-            <a href="product.html?product_name=Shoes&product_id=004" class="shop-now">Shop Now</a>
-        </div>
-
-        <div class="product-card">
-            <img src="images/watch1-2.jpg" alt="Watch" class="product-image">
-            <h3>Watch</h3>
-            <p>Classic wristwatch.</p>
-            <a href="product.html?product_name=Watch&product_id=005" class="shop-now">Shop Now</a>
-        </div>
-
-        <div class="product-card">
-            <img src="images/hoddie2-1.jpg" alt="Hoddie" class="product-image">
-            <h3>Hoddie</h3>
-            <p>Comfortable hoddie.</p>
-            <a href="product.html?product_name=Hoddie&product_id=004" class="shop-now">Shop Now</a>
-        </div>
-
-        <div class="product-card">
-            <img src="images/top1-1.jpg" alt="Top" class="product-image">
-            <h3>Top</h3>
-            <p>Cotton Top.</p>
-            <a href="product.html?product_name=Top&product_id=005" class="shop-now">Shop Now</a>
-        </div>
-
-        <div class="product-card">
-            <img src="images/tshirt3-1.jpg" alt="T-shirt" class="product-image">
-            <h3>T-shirt</h3>
-            <p>Cotton t-shirt in black.</p>
-            <a href="product.html?product_name=T-shirt&product_id=006" class="shop-now">Shop Now</a>
-        </div>
-
-        <div class="product-card">
-            <img src="images/tshirt4-2.jpg" alt="T-shirt" class="product-image">
-            <h3>T-shirt</h3>
-            <p>Cotton t-shirt in pink.</p>
-            <a href="product.html?product_name=T-shirt&product_id=007" class="shop-now">Shop Now</a>
+    <!-- Footwear Section -->
+    <div class="product-section">
+        <h2 class="section-title">Footwear</h2>
+        <div class="product-scroll">
+            <div class="product-card">
+                <img src="images/shoes3-1.webp" alt="Running Shoes" class="product-image">
+                <h3>Running Shoes</h3>
+                <p>Comfortable running shoes for daily use</p>
+                <a href="product.html?product_name=Running Shoes&product_id=001&price=999" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/shoes2-1.jpg" alt="Casual Shoes" class="product-image">
+                <h3>Casual Shoes</h3>
+                <p>Stylish casual shoes</p>
+                <a href="product.html?product_name=Casual Shoes&product_id=002&price=799" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/shoes4-1.jpg" alt="Sports Shoes" class="product-image">
+                <h3>Sports Shoes</h3>
+                <p>Professional sports shoes</p>
+                <a href="product.html?product_name=Sports Shoes&product_id=003&price=1499" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/shoes1-1.jpg" alt="Formal Shoes" class="product-image">
+                <h3>Formal Shoes</h3>
+                <p>Elegant formal shoes</p>
+                <a href="product.html?product_name=Formal Shoes&product_id=004&price=1299" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/shoes6-1.jpg" alt="Sneakers" class="product-image">
+                <h3>Designer Sneakers</h3>
+                <p>Trendy designer sneakers</p>
+                <a href="product.html?product_name=Designer Sneakers&product_id=005&price=1199" class="shop-now">Shop Now</a>
+            </div>
         </div>
     </div>
 
+    <!-- Bags Section -->
+    <div class="product-section">
+        <h2 class="section-title">Bags</h2>
+        <div class="product-scroll">
+            <div class="product-card">
+                <img src="images/card-image10.jpg" alt="Leather Bag" class="product-image">
+                <h3>Leather Bag</h3>
+                <p>Stylish leather bag for everyday use</p>
+                <a href="product.html?product_name=Leather Bag&product_id=006&price=1499" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/bag2.jpg" alt="Cross-body Sling" class="product-image">
+                <h3>Cross-body sling</h3>
+                <p>Durable sling bag for travel</p>
+                <a href="product.html?product_name=Cross-body sling&product_id=007&price=999" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/bag1-1.jpg" alt="Tote Bag" class="product-image">
+                <h3>Tote Bag</h3>
+                <p>Spacious tote bag</p>
+                <a href="product.html?product_name=Tote Bag&product_id=008&price=699" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/c-bags.jpg" alt="Clutch" class="product-image">
+                <h3>Designer Clutch</h3>
+                <p>Elegant evening clutch</p>
+                <a href="product.html?product_name=Designer Clutch&product_id=009&price=899" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/bag3.jpg" alt="Laptop Bag" class="product-image">
+                <h3>Laptop Bag</h3>
+                <p>Professional laptop bag</p>
+                <a href="product.html?product_name=Laptop Bag&product_id=010&price=1299" class="shop-now">Shop Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- T-Shirts Section -->
+    <div class="product-section">
+        <h2 class="section-title">T-Shirts</h2>
+        <div class="product-scroll">
+            <div class="product-card">
+                <img src="images/tshirt3-1.jpg" alt="Black T-Shirt" class="product-image">
+                <h3>Black T-Shirt</h3>
+                <p>Classic black cotton t-shirt</p>
+                <a href="product.html?product_name=Black T-Shirt&product_id=011&price=499" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/tshirt4-2.jpg" alt="Pink T-Shirt" class="product-image">
+                <h3>Pink T-Shirt</h3>
+                <p>Clean pink cotton t-shirt</p>
+                <a href="product.html?product_name=Pink T-Shirt&product_id=012&price=399" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/top2-1.jpg" alt="Korean T-Shirt" class="product-image">
+                <h3>Korean T-Shirt</h3>
+                <p>Trendy korean print t-shirt</p>
+                <a href="product.html?product_name=Korean T-Shirt&product_id=013&price=599" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/tshirt5.jpg" alt="Trendy T-Shirt" class="product-image">
+                <h3>Trendy T-Shirt</h3>
+                <p>Trendy t-shirt</p>
+                <a href="product.html?product_name=Trendy T-Shirt&product_id=014&price=449" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/tshirt6.jpg" alt="Back print T-Shirt" class="product-image">
+                <h3>Back print T-Shirt</h3>
+                <p>Stylish t-shirt</p>
+                <a href="product.html?product_name=Back print T-Shirt&product_id=015&price=549" class="shop-now">Shop Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jeans Section -->
+    <div class="product-section">
+        <h2 class="section-title">Jeans</h2>
+        <div class="product-scroll">
+            <div class="product-card">
+                <img src="images/jeans1.jpg" alt="Blue Jeans" class="product-image">
+                <h3>Blue Jeans</h3>
+                <p>Classic blue denim jeans</p>
+                <a href="product.html?product_name=Blue Jeans&product_id=016&price=1299" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/jeans3-2.jpg" alt="Black Jeans" class="product-image">
+                <h3>Black Jeans</h3>
+                <p>Stylish black denim jeans</p>
+                <a href="product.html?product_name=Black Jeans&product_id=017&price=1199" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/jeans3.jpg" alt="Skinny Jeans" class="product-image">
+                <h3>Skinny Jeans</h3>
+                <p>Comfortable skinny fit jeans</p>
+                <a href="product.html?product_name=Skinny Jeans&product_id=018&price=1099" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/jeans4.jpg" alt="Bootcut Jeans" class="product-image">
+                <h3>Bootcut Jeans</h3>
+                <p>Classic bootcut style jeans</p>
+                <a href="product.html?product_name=Bootcut Jeans&product_id=019&price=999" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/jeans5.jpg" alt="Distressed Jeans" class="product-image">
+                <h3>Distressed Jeans</h3>
+                <p>Trendy distressed denim</p>
+                <a href="product.html?product_name=Distressed Jeans&product_id=020&price=1199" class="shop-now">Shop Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ethnic Wear Section -->
+    <div class="product-section">
+        <h2 class="section-title">Ethnic Wear</h2>
+        <div class="product-scroll">
+            <div class="product-card">
+                <img src="images/ethinic1-2.jpg" alt="Traditional Dress" class="product-image">
+                <h3>Traditional Dress</h3>
+                <p>Elegant traditional dress</p>
+                <a href="product.html?product_name=Traditional Dress&product_id=021&price=2499" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/ethinic2-1.jpg" alt="Designer Saree" class="product-image">
+                <h3>Designer Saree</h3>
+                <p>Beautiful designer saree</p>
+                <a href="product.html?product_name=Designer Saree&product_id=022&price=1999" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/ethinic3-1.jpg" alt="Kurta Set" class="product-image">
+                <h3>Kurta Set</h3>
+                <p>Stylish kurta set</p>
+                <a href="product.html?product_name=Kurta Set&product_id=023&price=1499" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/ethinic4-1.jpg" alt="Lehenga" class="product-image">
+                <h3>Lehenga</h3>
+                <p>Elegant lehenga</p>
+                <a href="product.html?product_name=Lehenga&product_id=024&price=2999" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/ethinic5-1.jpg" alt="Anarkali Suit" class="product-image">
+                <h3>Anarkali Suit</h3>
+                <p>Beautiful anarkali suit</p>
+                <a href="product.html?product_name=Anarkali Suit&product_id=025&price=1799" class="shop-now">Shop Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skincare Section -->
+    <div class="product-section">
+        <h2 class="section-title">Skincare</h2>
+        <div class="product-scroll">
+            <div class="product-card">
+                <img src="images/skincare1-1.jpg" alt="Face Wash" class="product-image">
+                <h3>Face Wash</h3>
+                <p>Gentle face wash</p>
+                <a href="product.html?product_name=Face Wash&product_id=026&price=299" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/skincare2-1.webp" alt="Moisturizer" class="product-image">
+                <h3>Moisturizer</h3>
+                <p>Hydrating moisturizer</p>
+                <a href="product.html?product_name=Moisturizer&product_id=027&price=399" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/skincare3-1.jpg" alt="Serum" class="product-image">
+                <h3>Serum</h3>
+                <p>Anti-aging serum</p>
+                <a href="product.html?product_name=Serum&product_id=028&price=599" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/skincare4-1.jpg" alt="Sunscreen" class="product-image">
+                <h3>Sunscreen</h3>
+                <p>SPF 50 sunscreen</p>
+                <a href="product.html?product_name=Sunscreen&product_id=029&price=349" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/skincare5-1.jpg" alt="Face Mask" class="product-image">
+                <h3>Face Mask</h3>
+                <p>Clay face mask</p>
+                <a href="product.html?product_name=Face Mask&product_id=030&price=249" class="shop-now">Shop Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accessories Section -->
+    <div class="product-section">
+        <h2 class="section-title">Accessories</h2>
+        <div class="product-scroll">
+            <div class="product-card">
+                <img src="images/accessories1-1.jpg" alt="Watch" class="product-image">
+                <h3>Watch</h3>
+                <p>Stylish watch</p>
+                <a href="product.html?product_name=Watch&product_id=031&price=1999" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/accessories2-1.jpg" alt="Sunglasses" class="product-image">
+                <h3>Sunglasses</h3>
+                <p>Designer sunglasses</p>
+                <a href="product.html?product_name=Sunglasses&product_id=032&price=899" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/accessories3-1.jpg" alt="Necklace" class="product-image">
+                <h3>Necklace</h3>
+                <p>Elegant necklace</p>
+                <a href="product.html?product_name=Necklace&product_id=033&price=1499" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/accessories4-1.jpg" alt="Earrings" class="product-image">
+                <h3>Earrings</h3>
+                <p>Beautiful earrings</p>
+                <a href="product.html?product_name=Earrings&product_id=034&price=699" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/accessories5-1.jpg" alt="Bracelet" class="product-image">
+                <h3>Bracelet</h3>
+                <p>Stylish bracelet</p>
+                <a href="product.html?product_name=Bracelet&product_id=035&price=799" class="shop-now">Shop Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Perfume Section -->
+    <div class="product-section">
+        <h2 class="section-title">Perfumes</h2>
+        <div class="product-scroll">
+            <div class="product-card">
+                <img src="images/perfume1-1.jpg" alt="Luxury Perfume" class="product-image">
+                <h3>Luxury Perfume</h3>
+                <p>Premium fragrance</p>
+                <a href="product.html?product_name=Luxury Perfume&product_id=036&price=2499" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/perfume2-1.jpg" alt="Floral Perfume" class="product-image">
+                <h3>Floral Perfume</h3>
+                <p>Sweet floral scent</p>
+                <a href="product.html?product_name=Floral Perfume&product_id=037&price=1799" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/perfume3-1.jpg" alt="Men's Cologne" class="product-image">
+                <h3>Men's Cologne</h3>
+                <p>Masculine fragrance</p>
+                <a href="product.html?product_name=Men's Cologne&product_id=038&price=1999" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/perfume4-1.jpg" alt="Body Mist" class="product-image">
+                <h3>Body Mist</h3>
+                <p>Light body mist</p>
+                <a href="product.html?product_name=Body Mist&product_id=039&price=899" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/perfume5-1.jpg" alt="Deodorant" class="product-image">
+                <h3>Deodorant</h3>
+                <p>Long-lasting deodorant</p>
+                <a href="product.html?product_name=Deodorant&product_id=040&price=399" class="shop-now">Shop Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Winter Collection Section -->
+    <div class="product-section">
+        <h2 class="section-title">Winter Collection</h2>
+        <div class="product-scroll">
+            <div class="product-card">
+                <img src="images/winter1.jpg" alt="Woolen Sweater" class="product-image">
+                <h3>Woolen Sweater</h3>
+                <p>Warm and cozy woolen sweater</p>
+                <a href="product.html?product_name=Woolen Sweater&product_id=041" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/winter2.jpg" alt="Winter Jacket" class="product-image">
+                <h3>Winter Jacket</h3>
+                <p>Stylish and warm winter jacket</p>
+                <a href="product.html?product_name=Winter Jacket&product_id=042" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/winter3.jpg" alt="Thermal Wear" class="product-image">
+                <h3>Thermal Wear</h3>
+                <p>Comfortable thermal inner wear</p>
+                <a href="product.html?product_name=Thermal Wear&product_id=043" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/winter4.jpg" alt="Winter Boots" class="product-image">
+                <h3>Winter Boots</h3>
+                <p>Waterproof winter boots</p>
+                <a href="product.html?product_name=Winter Boots&product_id=044" class="shop-now">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/winter5.jpg" alt="Winter Scarf" class="product-image">
+                <h3>Winter Scarf</h3>
+                <p>Warm and stylish winter scarf</p>
+                <a href="product.html?product_name=Winter Scarf&product_id=045" class="shop-now">Shop Now</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle Shop Now button click
+        function handleShopNow(product) {
+            // Store product details in localStorage
+            localStorage.setItem('selectedProduct', JSON.stringify(product));
+            // Redirect to product.html
+            window.location.href = 'product.html';
+        }
+
+        // Update all Shop Now buttons with onclick handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                const product = {
+                    name: card.querySelector('h3').textContent,
+                    description: card.querySelector('p').textContent,
+                    image: card.querySelector('img').src,
+                    category: card.closest('.product-section').querySelector('h2').textContent,
+                    price: '₹' + (Math.floor(Math.random() * 1000) + 500) // Random price between 500 and 1500
+                };
+                
+                const shopNowBtn = card.querySelector('.shop-now');
+                if (shopNowBtn) {
+                    // Remove href attribute and add onclick handler
+                    shopNowBtn.removeAttribute('href');
+                    shopNowBtn.style.cursor = 'pointer';
+                    shopNowBtn.onclick = (e) => {
+                        e.preventDefault();
+                        handleShopNow(product);
+                    };
+                }
+            });
+        });
+    </script>
 </body>
 </html>
